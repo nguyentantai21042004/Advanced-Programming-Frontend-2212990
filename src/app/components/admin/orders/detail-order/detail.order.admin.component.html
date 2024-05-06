@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="mt-5"></div>
+
+  <div class="header-title text-center pt-4">
+    <h2>Order Informations</h2>
+  </div>
+
+  <div class="mt-3"></div>
+
+  <div class="row">
+    <div class="col-md-6" style="padding-left: 5%;">
+      <p><strong>Order ID:</strong> {{ orderResponse.id }}</p>
+      <p><strong>Vehicle ID:</strong> {{ orderResponse.vehicleId }}</p>
+      <p><strong>Vehicle Name:</strong> {{ orderResponse.vehicleName }}</p>
+      <p><strong>Vehicle Price:</strong> {{ orderResponse.vehiclePrice }}</p>
+
+      <div class="mt-3"></div>
+
+      <p><strong>Driver ID:</strong> {{ orderResponse.driverId }}</p>
+      <p><strong>Driver Name:</strong> {{ orderResponse.driverName }}</p>
+      <p><strong>Driver Phone:</strong> {{ orderResponse.driverPhone }}</p>
+      <p><strong>Driver Price:</strong> {{ orderResponse.driverPrice }}</p>
+
+      <div class="form-group" style="width: 40%;">
+        <label for="status" class="mb-2"><strong>Status:</strong></label>
+        <select class="form-control" name="status" id="status" [(ngModel)]="orderResponse.status" required>
+          <option [value]="orderResponse.status" selected disabled>{{ orderResponse.status }}</option>
+          <option value="PENDING">PENDING</option>
+          <option value="DONE">DONE</option>
+          <option value="PROCESSING">PROCESSING</option>
+          <option value="CANCELED">CANCELED</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mt-3"></div>
+
+      <p><strong>Customer Phone:</strong> {{ orderResponse.customerPhone }}</p>
+      <p><strong>Start Place:</strong> {{ orderResponse.startPlace }}</p>
+      <p><strong>End Place:</strong> {{ orderResponse.endPlace }}</p>
+      <p><strong>Start Date:</strong> {{ orderResponse.startDate | date: 'yyyy-MM-dd HH:mm' }}</p>
+
+      <div class="mt-3"></div>
+
+      <p><strong>Distance:</strong> {{ orderResponse.distance }} kms</p>
+      <p><strong>Duration:</strong> {{ orderResponse.duration }} hours</p>
+      <p><strong>SumOfExpense:</strong> {{ orderResponse.sumOfExpense }}</p>
+      <p><strong>Profit:</strong> {{ orderResponse.profit }}</p>
+    </div>
+  </div>
+
+
+  <div class="d-flex justify-content-center" style="padding-bottom: 40px;">
+    <button type="button" class="save-button mt-3" (click)="saveOrder()">SAVE</button>
+  </div>
+</div>

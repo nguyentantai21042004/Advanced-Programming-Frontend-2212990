@@ -1,0 +1,47 @@
+<div class="container">
+
+  <div class="mt-5"></div>
+
+  <div class="header-title text-center pt-4">
+    <h2>Vehicle Informations</h2>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-6" style="padding-left: 5%;">
+      <p><strong>Order ID:</strong> {{ vehicleResponse.id }}</p>
+      <p><strong>Name:</strong> {{ vehicleResponse.name }}</p>
+      <p><strong>Payload:</strong> {{ vehicleResponse.payload }}</p>
+      <p><strong>Material:</strong> {{ vehicleResponse.material }}</p>
+      <p><strong>License Plate:</strong> {{ vehicleResponse.licensePlate }}</p>
+      <p><strong>Vehicle Type:</strong> {{ vehicleResponse.vehicleType }}</p>
+      <p><strong>Driver License:</strong> {{ vehicleResponse.driverLicense }}</p>
+      <p><strong>Rental Price:</strong> {{ vehicleResponse.rentalPrice }}</p>
+
+      <div class="form-group" style="width: 50%;">
+        <label for="status" class="mb-2"><strong>Status:</strong></label>
+        <select class="form-control" name="status" id="status" [(ngModel)]="vehicleUpdateDTO.status" required>
+          <option value="" selected disabled>------------ Vehicle Status -------------</option>
+          <option value="PENDING">PENDING</option>
+          <option value="PROCESSING">PROCESSING</option>
+          <option value="AVAILABLE">AVAILABLE</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-md-6" style="padding-right: 3%;">
+      <div class="img-container">
+        <img *ngIf="vehicleResponse.url; else defaultImage" [src]="vehicleResponse.url" class="img-fluid img-details"
+          alt="Selected Image">
+        <ng-template #defaultImage>
+          <img src="https://cdn.dribbble.com/users/372814/screenshots/14189965/car-loading-animation.gif"
+            class="img-fluid img-details" alt="Default Image">
+        </ng-template>
+      </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center" style="padding-bottom: 40px;">
+      <button type="submit" class="updateVehicle-button mt-3" (click)="update()">SAVE</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="container-fluid" style="height: 155vh;">
+  <div class="row">
+    <nav id="sidebar" class="col-md-2 col-lg-2 d-md-block bg-light sidebar">
+      <div class="position-sticky">
+
+        <div class="text-center row align-items-center mt-4 mb-4">
+          <div class="col-12">
+            <div class="d-flex justify-content-center align-items-center">
+              <div class="me-3">
+                <i class="fas fa-grin-wink fa-2x"></i>
+              </div>
+              <h5 class="mb-0" style="font-weight: bold;">HCMUT ADMIN</h5>
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4">
+        <div class="admin-img align-items-center text-center">
+          <img
+            src="{{userResponse?.image_url ? userResponse?.image_url : 'https://bootdey.com/img/Content/avatar/avatar7.png'}}"
+            alt="Admin" class="rounded-circle" width="150">
+          <div class="mt-4">
+            <h4>{{userResponse?.full_name}}</h4>
+            <p class="text-secondary mb-1" style="color: white !important">Last Update: {{ userResponse?.updatedAt |
+              date:'dd/MM/yyyy' }}</p>
+            <p class="text-muted font-size-sm" style="color: white !important">{{userResponse?.address}}</p>
+          </div>
+        </div>
+
+        <div class="mt-4"></div>
+
+        <ul class="nav flex-column text-center">
+          <li class="nav-item" style="padding-right: 20px;">
+            <a class="nav-link" (click)="showAdminComponent('orders')">
+              <i class="fa-brands fa-first-order icon"></i>All Orders
+            </a>
+          </li>
+          <li class="nav-item" style="padding-right: 20px;">
+            <a class="nav-link" (click)="showAdminComponent('vehiclesAD')">
+              <i class="fa-solid fa-truck icon"></i>All Vehicles
+            </a>
+          </li>
+          <li class="nav-item" style="padding-right: 20px;">
+            <a class="nav-link" (click)="showAdminComponent('drivers')">
+              <i class="fa-regular fa-id-card icon"></i>All Drivers
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </nav>
+    <div class="col-md-11 col-lg-10 overflow-auto">
+      <header class="header d-flex justify-content-between align-items-center" style="width: 100%;">
+        <div class="col-md-10">
+          <h1 class="header-title">Admin Homepage</h1>
+        </div>
+        <div class="col-md-2">
+          <div class="d-flex align-items-center" [ngbPopover]="popoverContent" (click)="togglePopover($event)">
+            <a class="nav-link">
+              {{ userResponse?.full_name }}
+            </a>
+
+            <div class="avatar" style="padding-left: 20px; padding-right: 10%;">
+              <img
+                src="{{userResponse?.image_url ? userResponse?.image_url : 'https://bootdey.com/img/Content/avatar/avatar7.png'}}"
+                alt="Avatar" class="rounded-circle-icon">
+            </div>
+
+            <ng-template #popoverContent>
+              <div class="popover-list text-center">
+                <a class="popover-item" (click)="handleItemClick(0)">My Account</a>
+                <a class="popover-item mt-2" (click)="handleItemClick(2)">Log Out</a>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </header>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

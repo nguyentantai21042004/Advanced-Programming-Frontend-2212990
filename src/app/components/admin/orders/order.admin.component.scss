@@ -1,0 +1,103 @@
+.addOrder-button {
+  padding: 8px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+  color: white;
+  background-color: #4e73df;
+  border-color: #4e73df;
+}
+
+.addOrder-button:hover {
+  padding: 8px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+  color: white;
+  background-color: #1b3994;
+  border-color: #4e73df;
+}
+
+.custom-table th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.custom-table th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.custom-table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.custom-table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+.table tbody tr:hover {
+  background-color: #f2f2f2 !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+}
+
+.table thead th {
+  background-color: #333;
+  color: white;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+.table td {
+  border-bottom: 1px solid #ddd;
+}
+
+.table {
+  width: 100%;
+}
+
+.table th,
+.table td {
+  font-size: 14px;
+}
+
+.table th,
+.table td {
+  text-transform: uppercase;
+  text-align: center;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.view-button {
+  background-color: rgb(92, 167, 238);
+}
+
+.view-button:hover {
+  background-color: rgb(34, 137, 233);
+}
+
+.delete-button {
+  background-color: rgb(233, 127, 78);
+}
+
+.delete-button:hover {
+  background-color: rgb(224, 88, 24);
+}
+
+.pagination .page-link {
+  color: #4e73df;
+}
+
+.pagination .page-link:hover {
+  color: #2754da;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #4e73df;
+  border-color: #4e73df;
+  color: white;
+}

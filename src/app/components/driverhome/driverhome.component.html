@@ -1,0 +1,68 @@
+<app-header></app-header>
+
+<div class="container" style="padding-top: 90px;">
+    <h3 class="text-center">All DRIVERS</h3>
+
+    <div class="mt-5"></div>
+
+    <div class="row pt-3">
+
+        @for (driver of drivers; track driver.id) {
+        <div class="col-md-3">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="d-flex flex-column align-items-center text-center mt-4"><img
+                            src="{{driver?.img ? driver?.img : 'https://bootdey.com/img/Content/avatar/avatar7.png'}}"
+                            alt="Driver" class="rounded-circle" width="150">
+                        <div class="mt-4">
+                            <p>Name: {{ driver.full_name }}</p>
+                            <p>Status: {{ driver.status }}</p>
+                            <p>Status: {{ driver.address }}</p>
+                            <p>Licenses {{ getLicenseNames(driver.licenses) }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+</div>
+
+<div class="mt-4"></div>
+
+<div class="d-flex justify-content-center">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @if(currentPage > 0) {
+            <li class="page-item">
+                <a class="page-link" (click)="onPageChange(0)">First</a>
+            </li>
+            }
+            @if(currentPage > 0) {
+            <li class="page-item">
+                <a class="page-link" (click)="onPageChange(currentPage - 1)">
+                    <i class="fa fa-chevron-left">Previous</i>
+                </a>
+            </li>
+            }
+            @for(page of visiblePages; track page) {
+            <ng-container>
+                <li class="page-item" [ngClass]="{'active': page === currentPage + 1}">
+                    <a class="page-link" (click)="onPageChange(page - 1)">{{ page }}</a>
+                </li>
+            </ng-container>
+            }
+
+            @if(currentPage < totalPages - 1) { <li class="page-item">
+                <a class="page-link" (click)="onPageChange(currentPage + 1)">
+                    <i class="fa fa-chevron-right">Next</i>
+                </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" (click)="onPageChange(totalPages - 1)">Last</a>
+                </li>
+                }
+        </ul>
+    </nav>
+</div>

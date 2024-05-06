@@ -1,0 +1,96 @@
+<app-header></app-header>
+
+<div class="container" style="padding-top: 90px;">
+    <h3 class="text-center">All VEHICLE</h3>
+
+    <div class="mt-1"></div>
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name, Brands,..." [(ngModel)]="keyword">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <select class="form-control" [(ngModel)]="vehicleType">
+                        <option value="" selected>Choose Vehicle Type</option>
+                        <option value="VAN">Van - 16 chỗ</option>
+                        <option value="SMALL TRUCK">Small Truck - dưới 10 tấn</option>
+                        <option value="HEAVY TRUCK">Heavy Truck - trên 10 tấn</option>
+                        <option value="PICKUP">Xe bán tải</option>
+                        <option value="BUS">Xe chở người</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="form-group text-center">
+                    <button class="btn btn-primary" (click)="searchProducts()">Find</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3"></div>
+
+    <div class="row pt-3">
+
+        @for (vehicle of vehicles; track vehicle.id) {
+        <div class="col-md-3">
+            <div class="card mb-3 mt-2">
+                <img [src]="vehicle.url" alt="Vehicle Image" class="vehicle-image" style="height: 200px;">
+                <div class="card-body">
+                    <p>Name: {{ vehicle.name }}</p>
+                    <p>License Plate: {{ vehicle.licensePlate }}</p>
+                    <p>Rental: {{ vehicle.rentalPrice }}đ</p>
+                    <p>Status: {{ vehicle.status }}</p>
+                    <p>Material: {{ vehicle.material }}</p>
+                    <p>Payload: {{ vehicle.payload }}</p>
+                    <p>Type: {{ vehicle.vehicleType }}</p>
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+</div>
+
+<div class="mt-4"></div>
+
+<div class="d-flex justify-content-center">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @if(currentPage > 0) {
+            <li class="page-item">
+                <a class="page-link" (click)="onPageChange(0)">First</a>
+            </li>
+            }
+            @if(currentPage > 0) {
+            <li class="page-item">
+                <a class="page-link" (click)="onPageChange(currentPage - 1)">
+                    <i class="fa fa-chevron-left">Previous</i>
+                </a>
+            </li>
+            }
+            @for(page of visiblePages; track page) {
+            <ng-container>
+                <li class="page-item" [ngClass]="{'active': page === currentPage + 1}">
+                    <a class="page-link" (click)="onPageChange(page - 1)">{{ page }}</a>
+                </li>
+            </ng-container>
+            }
+
+            @if(currentPage < totalPages - 1) { <li class="page-item">
+                <a class="page-link" (click)="onPageChange(currentPage + 1)">
+                    <i class="fa fa-chevron-right">Next</i>
+                </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" (click)="onPageChange(totalPages - 1)">Last</a>
+                </li>
+                }
+        </ul>
+    </nav>
+</div>

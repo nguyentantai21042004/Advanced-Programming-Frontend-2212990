@@ -1,0 +1,64 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-left d-flex flex-column justify-content-center align-items-center">
+            <div class="brand">HCMUT | SIGNIN</div>
+            <hr class="horizontal-line" />
+            <form #registerForm="ngForm">
+                <div class="register-form mx-auto">
+                    <h2 class="register-header text-center" style=" font-weight: bold;">SIGNIN</h2>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone's number</label>
+                        <div class="mt-2"></div>
+                        <input type="text" class="form-control" placeholder="Enter your phone number" name="phone"
+                            [(ngModel)]="phoneNumber" id="phoneNumber" required>
+                        <div class="divider-nospace"></div>
+                    </div>
+
+                    <div class="mt-3"></div>
+                    <div class="form-group password-field">
+                        <label for="password">Password</label>
+                        <div class="mt-2"></div>
+                        <input type="password" name="password" [(ngModel)]="password"
+                            placeholder="At least 3 characters" required class="form-control" id="password">
+                        <div class="divider-nospace"></div>
+                    </div>
+                    <div class="mt-2"></div>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <div class="mt-1"></div>
+                        <select class="form-control" [(ngModel)]="selectedRole" name="selectedRole" id="selectedRole"
+                            required>
+                            <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="mt-1"></div>
+                    <div class="form-group">
+                        <div class="form-check checkbox-text">
+                            <span style="display: flex;">
+                                <input type="checkbox" class="form-check-input" id="remember" [(ngModel)]="rememberMe"
+                                    style="margin-right: 8px;">
+                                <label class="form-check-label text-start" for="remember">
+                                    Ghi nhớ đăng nhập</label>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mt-3"></div>
+
+                    <div class="text-center"> <button type="button" (click)="login()" class="login-button">Log In</button>
+                    </div>
+                    <div class="mt-3"></div>
+                    <p class="text-center">You don't have an account ? <span>
+                            <a (click)="Register()" class="register-link">Sign up</a></span></p>
+                    <p class="text-center" style="margin-top: -15px;">
+                        <a href="#" class="password-link">Forget your password</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="col-right">
+            <img src="../../assets/signin.jpg" class="img-fluid rounded" alt="Image" />
+        </div>
+    </div>
+</div>

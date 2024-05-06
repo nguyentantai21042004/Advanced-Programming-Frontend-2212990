@@ -1,0 +1,36 @@
+.container {
+  background-color: white !important;
+  border-radius: 20px;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.img-details {
+  border-radius: 10px;
+  max-width: 100%;
+  max-height: 300px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.updateVehicle-button {
+  padding: 8px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+  color: white;
+  background-color: #4e73df;
+  border-color: #4e73df;
+}
+
+.updateVehicle-button:hover {
+  padding: 8px 20px;
+  border-radius: 12px;
+  font-weight: 500;
+  color: white;
+  background-color: #1b3994;
+  border-color: #4e73df;
+}

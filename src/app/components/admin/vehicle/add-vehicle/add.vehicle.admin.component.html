@@ -1,0 +1,112 @@
+<div class="container">
+  <div class="mt-4 pt-4"></div>
+
+
+  <div class="register-form mx-auto" style="width: 60%;">
+    <form #addVehicleForm="ngForm">
+      <h2 class="register-header text-center">ADD VEHICLE</h2>
+      <div class="form-group">
+        <label for="vehicleName">Vehicle's Name</label>
+        <input type="text" placeholder="Vehicle's ID, Brands,...." [(ngModel)]="insertVehicleDTO.name"
+          name="vehicleName" class="form-control" id="vehicleName" required>
+        <div class="divider-nospace"></div>
+      </div>
+      <div class="mt-3"></div>
+
+      <div class="form-group">
+        <label for="payload">Payload</label>
+        <input type="number" class="form-control" placeholder="Enter Payload in kg"
+          [(ngModel)]="insertVehicleDTO.payload" name="payload" id="payload" required>
+        <div class="divider-nospace"></div>
+      </div>
+
+      <div class="mt-3"></div>
+
+      <div class="form-group">
+        <label for="material">Material</label>
+        <input type="text" class="form-control" [(ngModel)]="insertVehicleDTO.material" name="material"
+          placeholder="Fuels, Diesels,..." id="material" required>
+        <div class="divider-nospace"></div>
+      </div>
+
+      <div class="mt-3"></div>
+
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-control" id="status" [(ngModel)]="insertVehicleDTO.status" name="status" required>
+          <option value="" disabled selected hidden>Choose status...</option>
+          <option value="AVAILABLE">AVAILABLE</option>
+          <option value="UNAVAILABLE">UNAVAILABLE</option>
+        </select>
+        <div class="divider-nospace"></div>
+      </div>
+
+
+      <div class="mt-3"></div>
+
+      <div class="form-group">
+        <label for="licensePlate">LicensePlate</label>
+        <input type="text" class="form-control" [(ngModel)]="insertVehicleDTO.license_plate" name="license_plate"
+          placeholder="Vehicle Plate" id="licensePlate" required>
+        <div class="divider-nospace"></div>
+      </div>
+      <div class="mt-3"></div>
+
+      <div class="form-group">
+        <label for="vehicleType">Vehicle Type</label>
+        <input type="text" class="form-control" [(ngModel)]="insertVehicleDTO.vehicle_type" name="vehicle_type"
+          placeholder="VAN, TRUCK,..." id="vehicleType" required>
+        <div class="divider-nospace"></div>
+      </div>
+
+      <div class="mt-3"></div>
+
+      <div class="form-group">
+        <label for="driverLicense">Driver License</label>
+        <select class="form-control" [(ngModel)]="insertVehicleDTO.driver_license" name="driver_license"
+          id="driverLicense" required>
+          <option value="" disabled selected hidden>Choose Minimum required license...</option>
+          <option *ngFor="let license of licenses" [value]="license.id">{{ license.name }}
+          </option>
+        </select>
+        <div class="divider-nospace"></div>
+      </div>
+
+      <div class="mt-3"></div>
+
+      <div class="form-group">
+        <label for="rentalPrice">Rental Price</label>
+        <input type="number" class="form-control" [(ngModel)]="insertVehicleDTO.rental_price" name="rental_price"
+          placeholder="In VND" id="rentalPrice" required>
+        <div class="divider-nospace"></div>
+      </div>
+
+      <div class="mt-3"></div>
+
+      <input type="file" (change)="onFileSelected($event)">
+
+      <div class="mt-3"></div>
+
+      <div class="form-group">
+        <div class="form-check checkbox-text">
+          <span style="display: flex;">
+            <input type="checkbox" class="form-check-input" id="agree" [(ngModel)]="isAgreed"
+              (click)="toggleAgreement()">
+            <label class="form-check-label text-start" for="agree"> Make sure that all
+              informations you provide are all exactly</label>
+          </span>
+        </div>
+      </div>
+
+
+
+      <div class="mt-3"></div>
+
+      <div class="d-flex justify-content-center" style="padding-bottom: 35px;"> <button type="submit"
+          class="addVehicle-button" (click)="addVehicle()">ADD
+          VEHICLE</button></div>
+      <div class="divider"></div>
+    </form>
+
+  </div>
+</div>

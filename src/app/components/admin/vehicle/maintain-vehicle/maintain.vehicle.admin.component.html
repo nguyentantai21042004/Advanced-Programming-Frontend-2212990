@@ -1,0 +1,162 @@
+<div class="container">
+  <div class="mt-5"></div>
+
+  <div class="header-title text-center pt-4">
+    <h2>Vehicle Maintenance</h2>
+  </div>
+
+  <div class="mt-3"></div>
+
+  <div class="row">
+    <div class="col-md-4" style="padding-left: 5%;">
+      <div class="vehicle-details mx-auto">
+        <h3>Vehicle Information</h3>
+        <p><strong>Order ID:</strong> {{ vehicleResponse.id }}</p>
+        <p><strong>Name:</strong> {{ vehicleResponse.name }}</p>
+        <p><strong>Payload:</strong> {{ vehicleResponse.payload }}</p>
+        <p><strong>Material:</strong> {{ vehicleResponse.material }}</p>
+        <p><strong>License Plate:</strong> {{ vehicleResponse.licensePlate }}</p>
+        <p><strong>Vehicle Type:</strong> {{ vehicleResponse.vehicleType }}</p>
+        <p><strong>Driver License:</strong> {{ vehicleResponse.driverLicense }}</p>
+        <p><strong>Rental Price:</strong> {{ vehicleResponse.rentalPrice }}</p>
+        <p><strong>Status</strong> {{ vehicleResponse.status }}</p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="register-form mx-auto">
+        <form>
+          <form #maintainance="ngForm">
+            <div class="form-group">
+              <label for="maintenanceDate">Maintenance Date</label>
+              <input type="date" [(ngModel)]="maintenanceDTO.maintenance_date" name="maintenanceDate"
+                class="form-control" id="maintenanceDate" required>
+              <div class="divider-nospace"></div>
+            </div>
+
+            <div class="mt-3"></div>
+
+            <div class="form-group">
+              <label for="maintenanceType">Type</label>
+              <input type="text" [(ngModel)]="maintenanceDTO.maintenance_type" name="maintenanceType"
+                class="form-control" id="maintenanceType" required>
+              <div class="divider-nospace"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="maintenanceDescription">Description</label>
+              <input type="text" [(ngModel)]="maintenanceDTO.description" name="maintenanceDescription"
+                class="form-control" id="maintenanceDescription" required>
+              <div class="divider-nospace"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="maintenanceCost">Cost</label>
+              <input type="number" class="form-control" id="maintenanceCost" [(ngModel)]="maintenanceDTO.cost"
+                name="maintenanceDTOCost" required>
+              <div class="divider-nospace"></div>
+            </div>
+
+            <div style="margin-top: 30px;"></div>
+
+            <div class="d-flex justify-content-center" style="padding-bottom: 30px;"> <button type="submit"
+                class="addMaintenance-button" (click)="addMaintenance()">CONFIRM</button>
+            </div>
+            <div class="divider"></div>
+          </form>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-4" style="padding-right: 5%;">
+      <div class="img-container">
+        <img *ngIf="vehicleResponse.url; else defaultImage" [src]="vehicleResponse.url" class="img-fluid img-details"
+          alt="Selected Image">
+        <ng-template #defaultImage>
+          <img src="https://cdn.dribbble.com/users/372814/screenshots/14189965/car-loading-animation.gif"
+            class="img-fluid img-details" alt="Default Image">
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="mt-5"></div>
+
+  <div class="header-title text-center pt-4">
+    <h2>Maintenance History</h2>
+  </div>
+
+  <div class="mt-3"></div>
+
+  <table class="table custom-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Maintenance Date</th>
+        <th>Maintenance Type</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let history of histories">
+        <td class="align-middle">{{ history.id }}</td>
+        <td class="align-middle">{{ history.maintenance_date | date: 'yyyy-MM-dd' }}</td>
+        <td class="align-middle">{{ history.maintenance_type }}</td>
+        <td class="align-middle">{{ history.description }}</td>
+        <td class="align-middle">{{ history.status }}</td>
+        <td class="align-middle">
+          <div *ngIf="history.status === 'PROCESSING'" class="d-flex justify-content-center">
+            <button class="btn done-button" (click)="doneAction(history.id)" style="margin-right: 10px;">DONE</button>
+            <button class="btn cancel-button" (click)="cancelAction(history.id)">CANCEL</button>
+          </div>
+
+          <div *ngIf="history.status !== 'PROCESSING'" class="d-flex justify-content-center">
+            <button class="btn delete-button" (click)="deleteAction(history.id)">DELETE</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="mt-4"></div>
+
+  <div class="d-flex justify-content-center">
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <ng-container *ngIf="currentPage > 0">
+          <li class="page-item">
+            <a class="page-link" (click)="onPageChange(0)">First</a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="currentPage > 0">
+          <li class="page-item">
+            <a class="page-link" (click)="onPageChange(currentPage - 1)">
+              <i class="fa fa-chevron-left"></i> Previous
+            </a>
+          </li>
+        </ng-container>
+        <ng-container *ngFor="let page of visiblePages">
+          <li class="page-item" [class.active]="page === currentPage + 1">
+            <a class="page-link" (click)="onPageChange(page - 1)">{{ page }}</a>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="currentPage < totalPages - 1">
+          <li class="page-item">
+            <a class="page-link" (click)="onPageChange(currentPage + 1)">
+              Next <i class="fa fa-chevron-right"></i>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" (click)="onPageChange(totalPages - 1)">Last</a>
+          </li>
+        </ng-container>
+      </ul>
+    </nav>
+  </div>
+  <div style="padding-bottom: 20px;"></div>
+</div>

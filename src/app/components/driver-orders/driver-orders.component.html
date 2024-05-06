@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+<div class="container-fluid" style="padding-top: 90px;">
+    <div class="container">
+
+        <div class="text-center mt-2">
+            <h1>All Your Orders </h1>
+        </div>
+
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Vehicle ID</th>
+                    <th>Driver ID</th>
+                    <th>Start Place</th>
+                    <th>End Place</th>
+                    <th>Start Date</th>
+                    <th>Customer Phone</th>
+                    <th>Status</th>
+                    <th>Distance</th>
+                    <th>Duration</th>
+                    <th>Sum of Expense</th>
+                    <th>Profit</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(order of orderResponses; track order.id){
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.vehicleId }}</td>
+                    <td>{{ order.driverId }}</td>
+                    <td>{{ order.startPlace }}</td>
+                    <td>{{ order.endPlace }}</td>
+                    <td>{{ order.startDate | date }}</td>
+                    <td>{{ order.customerPhone }}</td>
+                    <td>{{ order.status }}</td>
+                    <td>{{ order.distance }}</td>
+                    <td>{{ order.duration }}</td>
+                    <td>{{ order.sumOfExpense | currency }}</td>
+                    <td>{{ order.profit | currency }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

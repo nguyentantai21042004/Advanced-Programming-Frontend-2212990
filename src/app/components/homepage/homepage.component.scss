@@ -1,0 +1,32 @@
+/* Home Page */
+.jumbotron {
+  height: 100vh;
+  color: white;
+  background-image: url("https://techcrunch.com/wp-content/uploads/2022/02/gomechanic-india.jpeg?w=1390&crop=1");
+  background-size: cover;
+  background-position: center;
+}
+
+.centered-button {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.centered-button {
+  position: relative;
+  z-index: 1;
+}
+.centered-button {
+  padding: 15px 30px;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.display-4.centered-text {
+  padding-bottom: 20px;
+  font-weight: bold;
+}

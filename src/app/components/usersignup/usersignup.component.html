@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-left">
+            <img src="../../assets/sigup.jpg" class="img-fluid rounded" alt="Image" />
+        </div>
+        <div class="col-right d-flex flex-column justify-content-center align-items-center">
+            <div class="brand">HCMUT | SIGNUP</div>
+            <hr class="horizontal-line" />
+            <form #registerForm="ngForm">
+                <div class="register-form">
+                    <h2 class="register-header text-center" style=" font-weight: bold;">SIGNUP</h2>
+                    <div class="mt-2"></div>
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <div class="mt-1"></div>
+                        <input type="text" placeholder="Enter your name" [(ngModel)]="fullName" name="fullName"
+                            class="form-control" id="fullName" required>
+                        <div class="divider-nospace"></div>
+                    </div>
+                    <div class="mt-3"></div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone's number</label>
+                        <div class="mt-1"></div>
+                        <input type="text" class="form-control" placeholder="Enter your phone number" name="phone"
+                            [(ngModel)]="phoneNumber" (input)="onPhoneChange()"
+                            (focus)="registerForm.form.markAllAsTouched()" id="phoneNumber" required>
+                        <div class="divider-nospace"></div>
+                        <p class="text-danger" *ngIf="phoneNumber.length < 6 &&
+                                registerForm.form.touched">Phone number must be at least 6 characters</p>
+                    </div>
+                    <div class="mt-3"></div>
+                    <div class="form-group password-field">
+                        <label for="password">Password</label>
+                        <div class="mt-1"></div>
+                        <input type="password" [(ngModel)]="password" name="password"
+                            placeholder="At least 3 characters" required class="form-control" id="password">
+                        <div class="divider-nospace"></div>
+                        <p class="text-danger" *ngIf="password.length < 6 &&
+                                registerForm.form.touched">Password must be at least 6 characters</p>
+                    </div>
+                    <div class="mt-3"></div>
+                    <div class="form-group password-field">
+                        <label for="retypePassword">Retype Password</label>
+                        <div class="mt-1"></div>
+                        <input type="password" placeholder="At least 3 characters" [(ngModel)]="retypePassword"
+                            name="retypePassword" required
+                            (input)="registerForm.form.markAsTouched(); checkMatchPassword()" class="form-control"
+                            id="retypePassword">
+                        <div class="divider-nospace"></div>
+                        <p class="text-danger" *ngIf="retypePassword.length < 3 && registerForm.form.touched">Password
+                            must be at least 3 characters</p>
+                        <p class="text-danger"
+                            *ngIf="registerForm.controls['retypePassword'].hasError('passwordsDoNotMatch') && registerForm.form.touched">
+                            Passwords do not match
+                        </p>
+                    </div>
+                    <div class="mt-3"></div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <div class="mt-1"></div>
+                        <input type="text" placeholder="Your current address" [(ngModel)]="address" name="address"
+                            class="form-control" id="address">
+                        <div class="divider-nospace"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check checkbox-text">
+                            <span style="display: flex;">
+                                <input type="checkbox" [(ngModel)]="isAccepted" name="isAccepted"
+                                    class="form-check-input" id="agree" style="margin-right: 8px;">
+                                <label class="form-check-label text-start" for="agree"> I agree to the terms and
+                                    conditions</label>
+                            </span>
+
+                        </div>
+                    </div>
+                    <div class="mt-3"></div>
+                    <div class="text-center"> <button type=" button" (click)="register()" class="register-button">Sign
+                            up</button>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="mt-3"></div>
+                    <p class="text-center">Do you already have an account ? <span>
+                            <a (click)="TrainToBusan()" class="register-link">Sign in</a></span></p>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
